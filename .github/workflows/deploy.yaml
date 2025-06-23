@@ -3,7 +3,7 @@ name: Deploy to App Engine
 on:
   push:
     branches:
-      - main  # Deploy only when pushing to main branch
+      - main
 
 jobs:
   deploy:
@@ -13,12 +13,15 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Set up Cloud SDK
+      - name: Authenticate with Google Cloud
+        uses: google-github-actions/auth@v1
+        with:
+          credentials_json: '${{ secrets.GCP_SA_KEY }}'
+
+      - name: Set up Google Cloud SDK
         uses: google-github-actions/setup-gcloud@v1
         with:
           project_id: executive-summary-463819
-          service_account_email: ${{ secrets.GCP_SA_EMAIL }}
-          service_account_key: ${{ secrets.GCP_SA_KEY }}
 
       - name: Deploy to App Engine
         run: gcloud app deploy --quiet
