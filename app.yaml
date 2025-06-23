@@ -1,0 +1,9 @@
+runtime: custom
+env: flex
+entrypoint: streamlit run streamlit_app.py --server.port=8080 --server.enableCORS=false
+
+# Optional: Resources allocation
+resources:
+  cpu: 1
+  memory_gb: 1
+  disk_size_gb: 10
