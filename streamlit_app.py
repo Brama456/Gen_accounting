@@ -71,3 +71,4 @@ if uploaded_file is not None:
     except Exception as e:
         st.error(f"❌ Error: {e}")
 
+st.title("✅ CI/CD Test - Deployed from GitHub Actions")
